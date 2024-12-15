@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap-4.6.2-dist/css/bootstrap.css' %}">
+    <script src="{% static 'bootstrap-4.6.2-dist/js/bootstrap.js' %}"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* 使页面至少占满整个视口 */
+            background-image: linear-gradient(to left,#39A9D5,#35CA78);
+        }</style>
+    <title>OCR文本识别系统</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/change-password">你好!<strong>{{ username }}</strong></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="切换导航">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/home">|主页|</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/index">|登录|</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register">|注册|</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/recent-images">|最近上传的照片|</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/index"  onclick="clearUsernameCookie(); return false;">|退出登录|</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="text-center my-5">
+        <h1>欢迎使用OCR文本识别系统</h1>
+    </section>
+
+    <div class="container my-4">
+        <form method="post" enctype="multipart/form-data" class="mt-4">
+            {% csrf_token %}
+            <div class="mb-3" style="margin-left: 35%">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-left: 40%">上传图片</button>
+        </form>
+    </div>
+
+
+    <div id="about" class="container my-5">
+        <h2>关于OCR</h2>
+        <p>OCR（Optical Character Recognition），即光学字符识别，是一种利用计算机自动识别和解析图像中的文字信息的技术。它能够将纸质文档、图片、照片等载体上的文字信息转化为计算机可编辑和处理的文本数据。</p>
+    </div>
+
+
+
+    <footer class="text-center mt-5 mb-3">
+        <footer class="blockquote-footer"> developed by group1：<cite title="Source Title">苏炳军 邓翔文 周倩冰 陈俊琦 崔竞越 方子阳</cite></footer>
+    </footer>
+    <script>
+    function clearUsernameCookie() {
+        // 删除存储用户名的 cookie
+        document.cookie = "username=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+
+        // 可选：如果还有其他 cookie，可以在这里处理
+
+        // 跳转到指定页面
+        window.location.href = "/index";
+    }
+</script>
+</body>
+</html>
