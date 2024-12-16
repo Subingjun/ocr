@@ -2,7 +2,6 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from .models import OCRUser, OCRImage
 from .forms import RegistrationForm, OCRImageForm
-from PIL import Image
 
 
 class OCRModelsTest(TestCase):
