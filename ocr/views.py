@@ -1,8 +1,5 @@
 import os
-
-from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
-
 from ocr.forms import LoginForm, RegistrationForm, OCRImageForm, ChangePasswordForm
 from ocr.login import login_view
 from ocr.models import OCRUser, OCRImage
